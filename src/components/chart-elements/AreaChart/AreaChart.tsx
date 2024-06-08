@@ -65,6 +65,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>((props, ref) 
     showTooltip = true,
     showLegend = true,
     showGridLines = true,
+    showAxisLine = false,
     showGradient = true,
     autoMinValue = false,
     curveType = "linear",
@@ -77,6 +78,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>((props, ref) 
     onValueChange,
     enableLegendSlider = false,
     customTooltip,
+    renderLabel,
     rotateLabelX,
     tickGap = 5,
     xAxisLabel,
@@ -190,10 +192,16 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>((props, ref) 
                 "fill-tremor-content",
                 // dark
                 "dark:fill-dark-tremor-content",
+                // common
+                "stroke-1",
+                // light
+                "stroke-tremor-border",
+                // dark
+                "dark:stroke-dark-tremor-border",
               )}
               interval={startEndOnly ? "preserveStartEnd" : intervalType}
               tickLine={false}
-              axisLine={false}
+              axisLine={showAxisLine}
               minTickGap={tickGap}
               angle={rotateLabelX?.angle}
               dy={rotateLabelX?.verticalShift}
@@ -212,7 +220,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>((props, ref) 
             <YAxis
               width={yAxisWidth}
               hide={!showYAxis}
-              axisLine={false}
+              axisLine={showAxisLine}
               tickLine={false}
               type="number"
               domain={yAxisDomain as AxisDomain}
@@ -226,6 +234,12 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>((props, ref) 
                 "fill-tremor-content",
                 // dark
                 "dark:fill-dark-tremor-content",
+                // common
+                "stroke-1",
+                // light
+                "stroke-tremor-border",
+                // dark
+                "dark:stroke-dark-tremor-border",
               )}
               tickFormatter={valueFormatter}
               allowDecimals={allowDecimals}
@@ -430,6 +444,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>((props, ref) 
                 animationDuration={animationDuration}
                 stackId={stack ? "a" : undefined}
                 connectNulls={connectNulls}
+                label={renderLabel}
               />
             ))}
             {onValueChange

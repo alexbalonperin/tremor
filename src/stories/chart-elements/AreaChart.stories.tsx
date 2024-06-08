@@ -370,3 +370,35 @@ export const xAxisNoPadding: Story = {
     xAxisPadding: 0,
   },
 };
+
+export const DataLabelsSimple: Story = {
+  args: {
+    renderLabel: true,
+  },
+};
+
+export const DataLabelsObject: Story = {
+  args: {
+    renderLabel: { fill: "white", fontSize: 20, position: "top" },
+  },
+};
+
+const renderCustomizedLabel = ({ x, y, value }: { x: number; y: number; value: number }) => {
+  return (
+    <text x={x} y={y} fill="white" textAnchor="end" dominantBaseline="central">
+      {value}
+    </text>
+  );
+};
+
+export const DataLabelsFunction: Story = {
+  args: {
+    renderLabel: renderCustomizedLabel,
+  },
+}
+
+export const ShowAxisLine: Story = {
+  args: {
+    showAxisLine: true,
+  },
+};

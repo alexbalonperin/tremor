@@ -1,3 +1,4 @@
+import { ImplicitLabelType } from "recharts/types/component/Label";
 import { Color, ValueFormatter, IntervalType } from "../../../lib";
 import type BaseAnimationTimingProps from "./BaseAnimationTimingProps";
 import { CustomTooltipProps } from "./CustomTooltipProps";
@@ -27,6 +28,7 @@ interface BaseChartProps extends BaseAnimationTimingProps, React.HTMLAttributes<
   showTooltip?: boolean;
   showLegend?: boolean;
   showGridLines?: boolean;
+  showAxisLine?: boolean;
   autoMinValue?: boolean;
   minValue?: number;
   maxValue?: number;
@@ -44,6 +46,7 @@ interface BaseChartProps extends BaseAnimationTimingProps, React.HTMLAttributes<
   xAxisLabel?: string;
   xAxisPadding?: number;
   yAxisLabel?: string;
+  renderLabel?: ImplicitLabelType;
 }
 
 export default BaseChartProps;

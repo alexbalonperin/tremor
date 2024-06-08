@@ -61,6 +61,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
     showTooltip = true,
     showLegend = true,
     showGridLines = true,
+    showAxisLine = false,
     autoMinValue = false,
     curveType = "linear",
     minValue,
@@ -72,6 +73,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
     onValueChange,
     enableLegendSlider = false,
     customTooltip,
+    renderLabel,
     rotateLabelX,
     tickGap = 5,
     xAxisLabel,
@@ -186,9 +188,15 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
                 "fill-tremor-content",
                 // dark
                 "dark:fill-dark-tremor-content",
+                // common
+                "stroke-1",
+                // light
+                "stroke-tremor-border",
+                // dark
+                "dark:stroke-dark-tremor-border",
               )}
               tickLine={false}
-              axisLine={false}
+              axisLine={showAxisLine}
               minTickGap={tickGap}
               angle={rotateLabelX?.angle}
               dy={rotateLabelX?.verticalShift}
@@ -207,7 +215,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
             <YAxis
               width={yAxisWidth}
               hide={!showYAxis}
-              axisLine={false}
+              axisLine={showAxisLine}
               tickLine={false}
               type="number"
               domain={yAxisDomain as AxisDomain}
@@ -221,6 +229,12 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
                 "fill-tremor-content",
                 // dark
                 "dark:fill-dark-tremor-content",
+                // common
+                "stroke-1",
+                // light
+                "stroke-tremor-border",
+                // dark
+                "dark:stroke-dark-tremor-border",
               )}
               tickFormatter={valueFormatter}
               allowDecimals={allowDecimals}
@@ -373,6 +387,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
                 isAnimationActive={showAnimation}
                 animationDuration={animationDuration}
                 connectNulls={connectNulls}
+                label={renderLabel}
               />
             ))}
             {onValueChange
@@ -395,6 +410,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
                       const { name } = props;
                       onCategoryClick(name);
                     }}
+                    label={renderLabel}
                   />
                 ))
               : null}
