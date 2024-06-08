@@ -349,4 +349,10 @@ export const DataLabelsFunction: Story = {
   args: {
     renderLabel: renderCustomizedLabel,
   },
+}
+
+export const ShowAxisLine: Story = {
+  args: {
+    showAxisLine: true,
+  },
 };
